@@ -12,4 +12,11 @@ class UserController extends Controller
         $users = User::all();
         return $users;
     }
+
+    public function findOne(Request $r)
+    {
+        // utilizar dessa forma é uma brecha de segurança, não será tratado neste momento
+        $user = User::find($r->id);
+        return $user;
+    }
 }
