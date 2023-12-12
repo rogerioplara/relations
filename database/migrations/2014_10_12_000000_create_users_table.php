@@ -17,8 +17,15 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->unsignedBigInteger('address_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
+
+            // adicionar foreign key
+            // address_id referencia o campo id na tabela addresses
+            // só funciona quando já existe a tabela criada no banco de dados
+            $table->foreign('address_id')->references('id')->on('addresses');
         });
     }
 

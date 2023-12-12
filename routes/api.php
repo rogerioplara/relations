@@ -13,3 +13,7 @@ Route::get('/users/{id}', [UserController::class, 'findOne']);
 // Listar os endereços
 Route::get('/addresses', [AddressController::class, 'index']);
 Route::get('/addresses/{id}', [AddressController::class, 'findOne']);
+
+// Inserir endereços e usuários
+Route::post('/addresses', [AddressController::class, 'insert']);
+Route::post('/users', [UserController::class, 'insert']);

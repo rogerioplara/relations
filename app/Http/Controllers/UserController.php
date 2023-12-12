@@ -17,6 +17,15 @@ class UserController extends Controller
     {
         // utilizar dessa forma é uma brecha de segurança, não será tratado neste momento
         $user = User::find($r->id);
-        return $user;
+        return $user->address;
+    }
+
+    public function insert(Request $r)
+    {
+        $data = $r->only(['name', 'email', 'password']);
+
+        $user = User::create($data);
+
+        return response()->json($user, 200);
     }
 }

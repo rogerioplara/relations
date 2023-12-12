@@ -42,4 +42,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /*
+    Relacionamento hasOne de usuário para endereço (usuário tem um endereço)
+    O objeto usuário agora possui o campo address que retorna um endereço da tabela address
+    Esse relacionamento está ocorrendo a nível de código
+    */
+    public function address()
+    {
+        return $this->hasOne(Address::class, 'id', 'address_id');
+    }
 }
