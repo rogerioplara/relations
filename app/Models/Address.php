@@ -14,5 +14,16 @@ class Address extends Model
         'address',
     ];
 
+    protected $hidden = [
+        'deleted_at',
+        'user_id',
+    ];
+
+    public function user()
+    {
+        // se utilizar o padrão do laravel, não precisa inserir a coluna e o nome
+        return $this->belongsTo(User::class);
+    }
+
     use HasFactory;
 }

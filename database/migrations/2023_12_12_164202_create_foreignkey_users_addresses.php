@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('addresses', function (Blueprint $table) {
             // adicionar foreign key
             // address_id referencia o campo id na tabela addresses
             // só funciona quando já existe a tabela criada no banco de dados
-            $table->foreign('address_id')
+            $table->foreign('user_id')
                 ->references('id')
-                ->on('addresses')
+                ->on('users')
                 // dessa forma, quando fizer o delete na tabela de endereços, vai setar o foreign key para nulo e permitir a exclusão
                 ->onDelete('SET NULL')
                 // existe outras actions que podem ser passadas, por exemplo CASCADE, onde todas as relações dessa exclusão serão apagadas também
@@ -30,9 +30,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('addresses', function (Blueprint $table) {
             //
-            $table->dropForeign('address_id');
+            $table->dropForeign('user_id');
         });
     }
 };

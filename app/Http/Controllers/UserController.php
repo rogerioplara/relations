@@ -17,12 +17,14 @@ class UserController extends Controller
     {
         // utilizar dessa forma é uma brecha de segurança, não será tratado neste momento
         $user = User::find($r->id);
-        return $user->address;
+        $user['addresses'] = $user->addresses;
+
+        return $user;
     }
 
     public function insert(Request $r)
     {
-        $data = $r->only(['name', 'email', 'password']);
+        $data = $r->only(['name', 'email', 'password', 'address_id']);
 
         $user = User::create($data);
 

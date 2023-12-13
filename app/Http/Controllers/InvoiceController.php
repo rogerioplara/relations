@@ -17,10 +17,17 @@ class InvoiceController extends Controller
     {
         $data = $r->only(['description', 'amount', 'address_id', 'user_id']);
 
-        // dd($data);
-
         $invoice = Invoice::create($data);
 
         return response()->json($invoice, 200);
+    }
+
+    public function findOne(Request $r)
+    {
+        $invoice = Invoice::find($r->id);
+        // é possível popular o retorno com as informações da relação
+        $invoice['user'] = $invoice->user;
+        $invoice['address'] = $invoice->address;
+        return $invoice;
     }
 }

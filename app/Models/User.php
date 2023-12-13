@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'address_id',
     ];
 
     /**
@@ -31,6 +32,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'address_id',
+        'deleted_at',
+
     ];
 
     /**
@@ -48,8 +52,9 @@ class User extends Authenticatable
     O objeto usuário agora possui o campo address que retorna um endereço da tabela address
     Esse relacionamento está ocorrendo a nível de código
     */
-    public function address()
+
+    public function addresses()
     {
-        return $this->hasOne(Address::class, 'id', 'address_id');
+        return $this->hasMany(Address::class);
     }
 }

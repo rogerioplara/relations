@@ -22,3 +22,4 @@ Route::post('/users', [UserController::class, 'insert']);
 // Inserir e listar invoices
 Route::post('/invoice', [InvoiceController::class, 'insert']);
 Route::get('/invoice', [InvoiceController::class, 'index']);
+Route::get('/invoice/{id}', [InvoiceController::class, 'findOne']);

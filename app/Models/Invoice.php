@@ -16,5 +16,23 @@ class Invoice extends Model
         'user_id'
     ];
 
+    // propriedades que ficarão escondidas e não serão retornadas na requisição
+    protected $hidden = [
+        'address_id',
+        'user_id',
+        'deleted_at',
+    ];
+
+    // Função que define o relacionamento hasOne
+    public function address()
+    {
+        return $this->hasOne(Address::class, 'id', 'address_id');
+    }
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
+
     use HasFactory;
 }
